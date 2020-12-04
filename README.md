@@ -58,11 +58,6 @@ SecondDataFrame <-
      Id1 = letters[5:14],
      Share = as.integer(100*seq(0.73, 1.00, 0.03)), # as % [0,100]
      AnotherVarY = runif(10))
-`DataFrame Number 3` <-
-  DF(Id1 = letters[15:24],
-     `ID #3` = LETTERS[1:10],
-     Expenditure = runif(10),
-     `Another Var Z` = runif(10))
 SimpleDF_1 <-
   DF(Id1 = letters[3:12],
      `ID #4` = LETTERS[6:15],
