@@ -13,21 +13,20 @@ below.
 The `schema` function uses the **column names** and **column
 types/classes** of data.frames and/or csv/tsv files to produce a schema
 diagram of relations between these tables. The inter-connected columns
-are shaded blue. By default, “correct” relations (same column names and
-same types/classes) are drawn as solid black lines
-(<img src="black-solid.png" height="12"/>). If there are evident
-type/class mismatches despite the same column names, the relation is
-drawn as a striped red line (<img src="red-striped.png" height="12"/>).
-If there is a slight mismatch that can be overcome by automatic coercion
-(integer-double, but both columns numeric) the relation line is dashed
-but black<br>(<img src="black-dashed.png" height="12"/>).
+are shaded blue ((<img src="blue-shade.png" height="12"/>)). By default,
+“correct” relations (same column names and same types/classes) are drawn
+as solid black lines (<img src="black-solid.png" height="12"/>). If
+there are evident type/class mismatches despite the same column names,
+the relation is drawn as a striped red
+line<br>(<img src="red-striped.png" height="12"/>). If there is a slight
+mismatch that can be overcome by automatic coercion (integer-double, but
+both columns numeric) the relation line is dashed but
+black<br>(<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 
-[data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html),
- 
-[DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html),
- 
+[data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html), 
+[DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html), 
 [DiagrammeRsvg](https://CRAN.R-project.org/package=DiagrammeRsvg)::[export\_svg](https://rdrr.io/cran/DiagrammeR/man/export_svg.html).
 
 #### Installation

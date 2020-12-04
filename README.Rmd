@@ -10,6 +10,7 @@ always_allow_html: true
 knitr::opts_chunk$set(echo = TRUE)
 schema <- function(...)
   cat(DiagrammeRsvg::export_svg(autoschema::schema(...)), file='plot.svg')
+set.seed(123) # to avoid git changes due to runif()
 ```
 
 This is a one-function package. Its sole function
@@ -18,16 +19,16 @@ shows the linkages between data.frames and/or csv/tsv files based on their colum
 
 The `schema` function uses the **column names** and **column types/classes** of data.frames
 and/or csv/tsv files to produce a schema diagram of relations between these
-tables. The inter-connected columns are shaded blue. By default, "correct" relations (same column names and same types/classes)
+tables. The inter-connected columns are shaded blue ((<img src="blue-shade.png" height="12"/>)). By default, "correct" relations (same column names and same types/classes)
 are drawn as solid black lines (<img src="black-solid.png" height="12"/>). If there are evident type/class mismatches
-despite the same column names, the relation is drawn as a striped red line (<img src="red-striped.png" height="12"/>).
+despite the same column names, the relation is drawn as a striped red line<br>(<img src="red-striped.png" height="12"/>).
 If there is a slight mismatch that can be overcome by automatic coercion
 (integer-double, but both columns numeric) the relation line is dashed but black<br>(<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 
-[data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html), &nbsp;
-[DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html), &nbsp;
+[data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html),&nbsp;
+[DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html),&nbsp;
 [DiagrammeRsvg](https://CRAN.R-project.org/package=DiagrammeRsvg)::[export_svg](https://rdrr.io/cran/DiagrammeR/man/export_svg.html).
 
 #### Installation
