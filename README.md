@@ -13,7 +13,7 @@ below.
 The `schema` function uses the **column names** and **column
 types/classes** of data.frames and/or csv/tsv files to produce a schema
 diagram of relations between these tables. The inter-connected columns
-are shaded blue ((<img src="blue-shade.png" height="12"/>)). By default,
+are shaded blue (<img src="blue-shade.png" height="12"/>). By default,
 “correct” relations (same column names and same types/classes) are drawn
 as solid black lines (<img src="black-solid.png" height="12"/>). If
 there are evident type/class mismatches despite the same column names,
