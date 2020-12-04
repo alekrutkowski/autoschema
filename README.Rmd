@@ -14,7 +14,7 @@ This is a one-function package. Its sole function
 [autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://rdrr.io/github/alekrutkowski/autoschema/man/schema.html)
 shows the linkages between data.frames and/or csv/tsv files based on their column names and column types/classes. See the usage example below.
 
-The `schema` function uses the column names and column types/classes of data.frames
+The `schema` function uses the **column names** and **column types/classes** of data.frames
 and/or csv/tsv files to produce a schema diagram of relations between these
 tables. By default, "correct" relations (same column names and same types/classes)
 are drawn as solid black lines. If there are evident type/class mismatches
