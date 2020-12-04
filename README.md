@@ -8,14 +8,15 @@ shows the linkages between data.frames and/or csv/tsv files based on
 their column names and column types/classes. See the usage example
 below.
 
-The `schema` function uses the column names and column types/classes of
-data.frames and/or csv/tsv files to produce a schema diagram of
-relations between these tables. By default, “correct” relations (same
-column names and same types/classes) are drawn as solid black lines. If
-there are evident type/class mismatches despite the same column names,
-the relation is drawn as a dashed red line. If there is a slight
-mismatch that can be overcome by automatic coercion (integer-double, but
-both columns numeric) the relation line is dashed but black.
+The `schema` function uses the **column names** and **column
+types/classes** of data.frames and/or csv/tsv files to produce a schema
+diagram of relations between these tables. By default, “correct”
+relations (same column names and same types/classes) are drawn as solid
+black lines. If there are evident type/class mismatches despite the same
+column names, the relation is drawn as a dashed red line. If there is a
+slight mismatch that can be overcome by automatic coercion
+(integer-double, but both columns numeric) the relation line is dashed
+but black.
 
 #### Dependencies
 
@@ -76,6 +77,14 @@ Last_DF <-
 ```
 
 #### Plot the linkages
+
+``` r
+schema(
+  data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
+  data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
+  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv') # can be more than 2 files
+)
+```
 
 ![](plot.svg)
 
