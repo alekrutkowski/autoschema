@@ -78,7 +78,6 @@ write.table(SimpleDF_2, 'SimpleDF_2.tsv', sep='\t',
             row.names=FALSE)
 Last_DF <-
   DF(`ID #4` = LETTERS[2:5],
-     # Id2 = runif(4), # some numeric data vector accidentally called Id2
      `Another Var R` = runif(4))
 ```
 
