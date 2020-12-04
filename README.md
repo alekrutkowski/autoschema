@@ -2,6 +2,8 @@ autoschema – R package for a simple diagram of relationships between
 data.frames
 ================
 
+<!-- build this doc with: rmarkdown::render('README.Rmd') -->
+
 This is a one-function package. Its sole function
 [autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://rdrr.io/github/alekrutkowski/autoschema/man/schema.html)
 shows the linkages between data.frames and/or csv/tsv files based on
@@ -10,18 +12,22 @@ below.
 
 The `schema` function uses the **column names** and **column
 types/classes** of data.frames and/or csv/tsv files to produce a schema
-diagram of relations between these tables. By default, “correct”
-relations (same column names and same types/classes) are drawn as solid
-black lines. If there are evident type/class mismatches despite the same
-column names, the relation is drawn as a dashed red line. If there is a
-slight mismatch that can be overcome by automatic coercion
+diagram of relations between these tables. The inter-connected columns
+are shaded blue. By default, “correct” relations (same column names and
+same types/classes) are drawn as solid black lines
+(<img src="black-solid.png" height="12"/>). If there are evident
+type/class mismatches despite the same column names, the relation is
+drawn as a striped red line (<img src="red-striped.png" height="12"/>).
+If there is a slight mismatch that can be overcome by automatic coercion
 (integer-double, but both columns numeric) the relation line is dashed
-but black.
+but black<br>(<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 
 [data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html),
+ 
 [DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html),
+ 
 [DiagrammeRsvg](https://CRAN.R-project.org/package=DiagrammeRsvg)::[export\_svg](https://rdrr.io/cran/DiagrammeR/man/export_svg.html).
 
 #### Installation
@@ -45,7 +51,8 @@ FirstDataFrame <-
      Id2 = letters[1:10],
      Share = seq(0.73, 1.00, 0.03), # as fraction [0,1]
      AnotherVarX = runif(10),
-     AnotherVarX2 = runif(10))
+     AnotherVarX2 = runif(10),
+     MyDate = as.Date(1e4*runif(10),origin='1899-12-30'))
 SecondDataFrame <-
   DF(RowNum = 5:14,
      Id2 = letters[5:14],

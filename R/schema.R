@@ -83,9 +83,17 @@ schema <- function(data_frames=list()
         lapply(csv_files, data.table::fread) else list()
         , csv_files)
     )
+
+  # helpers
   quo <- function(x) paste0('`',x,'`')
   quoIfSpaceInside <- function(x)
     ifelse(grepl('[[:space:]]',x),quo(x),x)
+  surroundWithSpaces <- function(s,v)
+    sapply(v, function(x) {
+      n <- nchar(x)
+      s. <- paste(rep.int(s,.25*n+3),collapse="")
+      paste0(s.,x,s.)
+    })
   colnamesInfo <- function(df_name) {
     `quo(df_name)` <- quo(df_name)
     .df <- dfs[[df_name]]
@@ -108,6 +116,7 @@ schema <- function(data_frames=list()
                ,paste(.type,.classes
                       ,sep='; '))]
   }
+
   colnames_db <-
     data.table::rbindlist(
       sapply(names(dfs)
@@ -139,26 +148,33 @@ schema <- function(data_frames=list()
           ,paste0(conn_db$.id__copy,'--',conn_db$.id))
         ,ifelse(
           conn_db$.type_class!=conn_db$.type_class__copy
-          ,paste0('[style=dashed, color='
+          ,paste0('['
                   ,ifelse(conn_db$.type_class=='integer' & conn_db$.type_class__copy=='double; numeric' |
                             conn_db$.type_class=='double; numeric' & conn_db$.type_class__copy=='integer'
-                          ,'black','red')
-                  ,', penwidth=2]')
+                          ,'style=dashed, color=black, penwidth=3'
+                          ,'style=dotted, color=red, penwidth=7')
+                  ,']')
           ,'[penwidth=2]')))
+  connected_nodes <-
+    unique(melt(conn_db[,.(.id,.id__copy)]
+         ,measure.vars=c('.id','.id__copy'))[['value']])
   labels <-
     paste0(colnames_db$.id
            # all blanks below to ensure enough space for the monospace labels
-           ,'[label="       '
-           ,quoIfSpaceInside(colnames_db$.colname)
-           ,'       \\n       '
-           ,colnames_db$.type_class
-           ,'       "]')
+           ,'[label="'
+           ,surroundWithSpaces(" ",quoIfSpaceInside(colnames_db$.colname))
+           ,'\\n'
+           ,surroundWithSpaces(" ",colnames_db$.type_class)
+           ,'", '
+           ,'color='
+           ,ifelse(colnames_db$.id %in% connected_nodes,'lightblue3','white')
+           ,']')
   subgraphs <-
     colnames_db[
       , .(contents=paste(.id,collapse=';\n')), by='.data.frame'][
         , code := paste0('subgraph "cluster_',gsub('[^a-zA-Z0-9]','_',make.names(.data.frame)),'" {\n'
-                         ,'label=<<b>',quoIfSpaceInside(.data.frame)
-                         ,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>>;\n' # to ensure enough space for monospace font label
+                         ,'label=<<b>',surroundWithSpaces('&nbsp;',quoIfSpaceInside(.data.frame))
+                         ,'</b>>;\n' # to ensure enough space for monospace font label
                          ,'style=filled;\n'
                          ,'color=grey90;\n'
                          ,contents,';\n}\n')]$code
@@ -167,7 +183,7 @@ schema <- function(data_frames=list()
           ,'rankdir="LR";'
           ,'ranksep=2;'
           ,'graph[fontname="monospace"];'
-          ,'node[shape=box, color=white, style=filled, fontname="monospace"];\n'
+          ,'node[shape=box, style=filled, fontname="monospace"];\n'
           ,paste(subgraphs,collapse='\n')
           ,paste(c(connections,""),collapse=';\n')
           ,paste(labels,collapse=';\n')

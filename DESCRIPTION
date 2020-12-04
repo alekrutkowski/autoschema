@@ -1,7 +1,7 @@
 Package: autoschema
 Type: Package
 Title: Simple diagram of relationships between data.frames
-Version: 0.1.0
+Version: 0.2.0
 Author: Aleksander Rutkowski
 Maintainer: Aleksander Rutkowski <alek.rutkowski@gmail.com>
 Description: More about what it does (maybe more than one line)
