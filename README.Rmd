@@ -14,7 +14,7 @@ set.seed(123) # to avoid git changes due to runif()
 ```
 
 This is a one-function package. Its sole function
-[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://rdrr.io/github/alekrutkowski/autoschema/man/schema.html)
+[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://github.com/alekrutkowski/autoschema/blob/main/schema.md)
 shows the linkages between data.frames and/or csv/tsv files based on their column names and column types/classes. See the usage example below.
 
 The `schema` function uses the **column names** and **column types/classes** of data.frames

@@ -5,7 +5,7 @@ data.frames
 <!-- build this doc with: rmarkdown::render('README.Rmd') -->
 
 This is a one-function package. Its sole function
-[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://rdrr.io/github/alekrutkowski/autoschema/man/schema.html)
+[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://github.com/alekrutkowski/autoschema/blob/main/schema.md)
 shows the linkages between data.frames and/or csv/tsv files based on
 their column names and column types/classes. See the usage example
 below.
@@ -13,15 +13,16 @@ below.
 The `schema` function uses the **column names** and **column
 types/classes** of data.frames and/or csv/tsv files to produce a schema
 diagram of relations between these tables. The inter-connected columns
-are shaded blue (<img src="blue-shade.png" height="12"/>).<br>By default,
-“correct” relations (same column names and same types/classes) are drawn
-as solid black lines (<img src="black-solid.png" height="12"/>).<br>If
-there are evident type/class mismatches despite the same column names,
-the relation is drawn as a striped red
+are shaded blue (<img src="blue-shade.png" height="12"/>).<br>By
+default, “correct” relations (same column names and same types/classes)
+are drawn as solid black lines
+(<img src="black-solid.png" height="12"/>).<br>If there are evident
+type/class mismatches despite the same column names, the relation is
+drawn as a striped red
 line<br>(<img src="red-striped.png" height="12"/>). If there is a slight
 mismatch that can be overcome by automatic coercion (integer-double, but
 both columns numeric) the relation line is dashed but
-black (<img src="black-dashed.png" height="12"/>).
+black<br>(<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 

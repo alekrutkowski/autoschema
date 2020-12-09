@@ -9,7 +9,7 @@ NULL
 #' and/or csv files to produce a schema diagram of relations between these
 #' tables. By default, "correct" relations (same column names and same types/classes)
 #' are drawn as solid black lines. If there are evident type/class mismatches
-#' despite the same column names, the relation is drawn as a dashed red line.
+#' despite the same column names, the relation is drawn as a striped red line.
 #' If there is a slight mismatch that can be overcome by automatic coercion
 #' (integer-double, but both columns numeric) the relation line is dashed but black. \cr \cr
 #' At least one data.frame or csv/tsv file needs to be specified. In other words,
@@ -91,7 +91,7 @@ schema <- function(data_frames=list()
   surroundWithSpaces <- function(s,v)
     sapply(v, function(x) {
       n <- nchar(x)
-      s. <- paste(rep.int(s,.25*n+3),collapse="")
+      s. <- paste(rep.int(s,round(.3*n)+4),collapse="")
       paste0(s.,x,s.)
     })
   colnamesInfo <- function(df_name) {
