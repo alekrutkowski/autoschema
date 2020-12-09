@@ -28,7 +28,7 @@ black (<img src="black-dashed.png" height="12"/>).
 
 [data.table](https://CRAN.R-project.org/package=data.table)::[fread](https://rdrr.io/cran/data.table/man/fread.html), 
 [DiagrammeR](https://CRAN.R-project.org/package=DiagrammeR)::[grViz](https://rdrr.io/cran/DiagrammeR/man/grViz.html), 
-[DiagrammeRsvg](https://CRAN.R-project.org/package=DiagrammeRsvg)::[export\_svg](https://rdrr.io/cran/DiagrammeR/man/export_svg.html).
+[DiagrammeRsvg](https://CRAN.R-project.org/package=DiagrammeRsvg)::[export\_svg](https://rdrr.io/cran/DiagrammeRsvg/man/export_svg.html).
 
 #### Installation
 

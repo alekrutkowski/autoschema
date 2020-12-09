@@ -49,6 +49,6 @@ Argument      |Description
 
 *  if `output_type` is `"gv"` : a string (character vector of length 1) with the GraphViz code (which can be later edited for tweaks)  
 
-*  if `output_type` is `"svg"` : a string (character vector of length 1) with the svg (xml) code produced by [`export_svg`](https://rdrr.io/cran/DiagrammeR/man/export_svg.html)  
+*  if `output_type` is `"svg"` : a string (character vector of length 1) with the svg (xml) code produced by [`export_svg`](https://rdrr.io/cran/DiagrammeRsvg/man/export_svg.html)  
 
 
