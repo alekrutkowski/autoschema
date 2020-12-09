@@ -19,10 +19,10 @@ are drawn as solid black lines
 (<img src="black-solid.png" height="12"/>).<br>If there are evident
 type/class mismatches despite the same column names, the relation is
 drawn as a striped red
-line<br>(<img src="red-striped.png" height="12"/>). If there is a slight
+line (<img src="red-striped.png" height="12"/>).<br>If there is a slight
 mismatch that can be overcome by automatic coercion (integer-double, but
 both columns numeric) the relation line is dashed but
-black<br>(<img src="black-dashed.png" height="12"/>).
+black (<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 

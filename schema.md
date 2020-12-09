@@ -15,7 +15,7 @@
  needs to be specified. It is allowed to use all the three arguments/parameters
  simultaneously i.e. have some data.frames provided directly (as values),
  some others indirectly (as object names) and yet some others as csv/tsv
- file names/paths/urls to be imported via [`fread`](fread.html) .
+ file names/paths/urls to be imported via [`fread`](https://rdrr.io/cran/data.table/man/fread.html) .
 
 
 ## Usage
@@ -36,7 +36,7 @@ Argument      |Description
 ------------- |----------------
 ```data_frames```     |     A list of data.frames.
 ```data_frame_names```     |     A character vector of names of data.frame objects.
-```csv_files```     |     A character vector of file names, file paths, or urls pointing to csv/tsv files. This value is passed to [`fread`](fread.html) 's argument/parameter `input` .
+```csv_files```     |     A character vector of file names, file paths, or urls pointing to csv/tsv files. This value is passed to [`fread`](https://rdrr.io/cran/data.table/man/fread.html) 's argument/parameter `input` .
 ```output_type```     |     A string -- one of the three options: `"grViz"` or `"gv"` or `"svg"` . See the return value description below.
 
 ## Value
@@ -45,10 +45,10 @@ Argument      |Description
  One of the three possibilities:
    
 
-*  if `output_type` is `"grViz"` : a diagram plot produced by  [`grViz`](grViz.html) (object of class `htmlwidget` )  
+*  if `output_type` is `"grViz"` : a diagram plot produced by  [`grViz`](https://rdrr.io/cran/DiagrammeR/man/grViz.html) (object of class `htmlwidget` )  
 
 *  if `output_type` is `"gv"` : a string (character vector of length 1) with the GraphViz code (which can be later edited for tweaks)  
 
-*  if `output_type` is `"svg"` : a string (character vector of length 1) with the svg (xml) code produced by [`export_svg`](export_svg.html)  
+*  if `output_type` is `"svg"` : a string (character vector of length 1) with the svg (xml) code produced by [`export_svg`](https://rdrr.io/cran/DiagrammeR/man/export_svg.html)  
 
 
