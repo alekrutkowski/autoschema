@@ -9,7 +9,8 @@
  are drawn as solid black lines. If there are evident type/class mismatches
  despite the same column names, the relation is drawn as a striped red line.
  If there is a slight mismatch that can be overcome by automatic coercion
- (integer-double, but both columns numeric) the relation line is dashed but black. list()  list() 
+ (integer-double, but both columns numeric) the relation line is dashed but black.
+
  At least one data.frame or csv/tsv file needs to be specified. In other words,
  either ``data_frames`` or ``data_frame_names`` or ``csv_files`` parameter
  needs to be specified. It is allowed to use all the three arguments/parameters
