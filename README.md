@@ -80,6 +80,7 @@ Last_DF <-
 #### Plot the linkages
 
 ``` r
+library(autoschema)
 schema(
   data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
   data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
