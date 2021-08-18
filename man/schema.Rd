@@ -8,7 +8,8 @@ schema(
   data_frames = list(),
   data_frame_names = character(0),
   csv_files = character(0),
-  output_type = "grViz"
+  output_type = "grViz",
+  all_links = FALSE
 )
 }
 \arguments{
@@ -20,8 +21,13 @@ schema(
 to csv/tsv files. This value is passed to \code{\link[data.table]{fread}}'s
 argument/parameter \code{input}.}
 
-\item{output_type}{A string -- one of the three options: \code{"grViz"} or
+\item{output_type}{A string -- one of the three options: \code{"grViz"} (default) or
 \code{"gv"} or \code{"svg"}. See the return value description below.}
+
+\item{all_links}{Logical (Boolean) -- if \code{FALSE} (default) all linkages
+between the data.frames are included in a graph (as edges); if \code{TRUE} only the
+minimum necessary linkages (edges) are included and some linkages can be
+inferred indirectly as passing through "intermediary" data.frames.}
 }
 \value{
 One of the three possibilities:

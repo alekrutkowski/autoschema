@@ -13,16 +13,15 @@ below.
 The `schema` function uses the **column names** and **column
 types/classes** of data.frames and/or csv/tsv files to produce a schema
 diagram of relations between these tables. The inter-connected columns
-are shaded blue (<img src="blue-shade.png" height="12"/>).<br>By
+are shaded blue (<img src="blue-shade.png" height="12"/>). <br>By
 default, “correct” relations (same column names and same types/classes)
 are drawn as solid black lines
-(<img src="black-solid.png" height="12"/>).<br>If there are evident
+(<img src="black-solid.png" height="12"/>). <br>If there are evident
 type/class mismatches despite the same column names, the relation is
-drawn as a striped red
-line (<img src="red-striped.png" height="12"/>).<br>If there is a slight
-mismatch that can be overcome by automatic coercion (integer-double, but
-both columns numeric) the relation line is dashed but
-black (<img src="black-dashed.png" height="12"/>).
+drawn as a striped red line (<img src="red-striped.png" height="12"/>).
+<br>If there is a slight mismatch that can be overcome by automatic
+coercion (integer-double, but both columns numeric) the relation line is
+dashed but black (<img src="black-dashed.png" height="12"/>).
 
 #### Dependencies
 
@@ -81,14 +80,40 @@ Last_DF <-
 
 ``` r
 library(autoschema)
+```
+
+Plotting **only the minimum** necessary linkages (edges); some linkages
+can be inferred by the viewer indirectly as passing through
+“intermediary” data.frames:
+
+``` r
 schema(
-  data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
+  data_frames = list(SecondDataFrame, FirstDataFrame), # or even more data.frames
   data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
-  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv') # can be more than 2 files
+  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv'), # can be more than 2 files
+  all_links = FALSE # default
 )
 ```
 
-![](plot.svg)
+![](plot1.svg)
+
+Plotting **all possible** linkages:
+
+``` r
+schema(
+  data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
+  data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
+  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv'), # can be more than 2 files
+  all_links = TRUE
+)
+```
+
+![](plot2.svg)
+
+#### Warning
+
+The order of the columns within each data.frame is not
+reflected/preserved in the graphs!
 
 #### Alternative output options
 

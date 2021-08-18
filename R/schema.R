@@ -24,8 +24,12 @@ NULL
 #' @param csv_files A character vector of file names, file paths, or urls pointing
 #' to csv/tsv files. This value is passed to \code{\link[data.table]{fread}}'s
 #' argument/parameter \code{input}.
-#' @param output_type A string -- one of the three options: \code{"grViz"} or
+#' @param output_type A string -- one of the three options: \code{"grViz"} (default) or
 #' \code{"gv"} or \code{"svg"}. See the return value description below.
+#' @param all_links Logical (Boolean) -- if \code{FALSE} (default) all linkages
+#' between the data.frames are included in a graph (as edges); if \code{TRUE} only the
+#' minimum necessary linkages (edges) are included and some linkages can be
+#' inferred indirectly as passing through "intermediary" data.frames.
 #' @return One of the three possibilities:
 #' \itemize{
 #'  \item if \code{output_type} is \code{"grViz"}: a diagram plot produced by
@@ -39,7 +43,8 @@ NULL
 schema <- function(data_frames=list()
                    ,data_frame_names=character(0)
                    ,csv_files=character(0)
-                   ,output_type='grViz') {
+                   ,output_type='grViz'
+                   ,all_links=FALSE) {
 
   # Sanity checks for the parameters/arguments
   stopifnot(
@@ -49,6 +54,9 @@ schema <- function(data_frames=list()
     ,is.character(output_type)
     ,length(output_type)==1
     ,output_type %in% c('grViz','gv','svg')
+    ,is.logical(all_links)
+    ,length(all_links)==1
+    ,!is.na(all_links)
   )
   if (
     identical(data_frames, list()) &&
@@ -133,10 +141,15 @@ schema <- function(data_frames=list()
     data.table::setnames(data.table::copy(colnames_db)
                          ,`setdiff(colnames(colnames_db),'.colname')`
                          ,`newnames(colnames_db_copy)`)
-  conn_db <-
-    merge(colnames_db, colnames_db_copy
-          , by='.colname'
-          ,allow.cartesian=TRUE)[.data.frame!=.data.frame__copy]
+  conn_db <- local({
+    x <-
+      merge(colnames_db, colnames_db_copy
+            , by='.colname'
+            ,allow.cartesian=TRUE)[.data.frame!=.data.frame__copy]
+    if (all_links) x else
+      x[, .SD[1]
+        , by=.(.data.frame,.colname)]
+  })
 
   # Graphviz code:
   connections <-
@@ -157,7 +170,7 @@ schema <- function(data_frames=list()
           ,'[penwidth=2]')))
   connected_nodes <-
     unique(melt(conn_db[,.(.id,.id__copy)]
-         ,measure.vars=c('.id','.id__copy'))[['value']])
+                ,measure.vars=c('.id','.id__copy'))[['value']])
   labels <-
     paste0(colnames_db$.id
            # all blanks below to ensure enough space for the monospace labels

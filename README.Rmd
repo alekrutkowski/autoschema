@@ -7,9 +7,14 @@ always_allow_html: true
 <!-- build this doc with: rmarkdown::render('README.Rmd') -->
 
 ```{r setup, include=FALSE}
+Rd2md::Rd2markdown('man/schema.Rd', 'schema.md')
 knitr::opts_chunk$set(echo = TRUE)
-schema <- function(...)
-  cat(DiagrammeRsvg::export_svg(autoschema::schema(...)), file='plot.svg')
+N <- 0
+schema <- function(...) {
+  N <<- N + 1
+  cat(DiagrammeRsvg::export_svg(autoschema::schema(...))
+      , file=paste0('plot',N,'.svg')) 
+}
 set.seed(123) # to avoid git changes due to runif()
 ```
 
@@ -82,15 +87,40 @@ Last_DF <-
 
 #### Plot the linkages
 
-```{r plot, echo=TRUE, warning=FALSE}
+```{r, eval=FALSE}
+library(autoschema)
+```
+
+Plotting **only the minimum** necessary linkages (edges); some linkages can be inferred
+by the viewer indirectly as passing through "intermediary" data.frames:
+
+```{r plot1, echo=TRUE, warning=FALSE}
 schema(
-  data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
+  data_frames = list(SecondDataFrame, FirstDataFrame), # or even more data.frames
   data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
-  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv') # can be more than 2 files
+  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv'), # can be more than 2 files
+  all_links = FALSE # default
 )
 ```
 
-![](plot.svg)
+![](plot1.svg)
+
+Plotting **all possible** linkages:
+
+```{r plot2, echo=TRUE, warning=FALSE}
+schema(
+  data_frames = list(FirstDataFrame, SecondDataFrame), # or even more data.frames
+  data_frame_names = c('Last_DF'), # can be more than 1 data.frame name
+  csv_files = c('SimpleDF_1.csv', 'SimpleDF_2.tsv'), # can be more than 2 files
+  all_links = TRUE
+)
+```
+
+![](plot2.svg)
+
+#### Warning
+
+The order of the columns within each data.frame is not reflected/preserved in the graphs!
 
 #### Alternative output options
 
