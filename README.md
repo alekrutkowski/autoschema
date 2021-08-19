@@ -2,10 +2,10 @@ autoschema – R package for a simple diagram of relationships between
 data.frames
 ================
 
-<!-- build this doc with: rmarkdown::render('README.Rmd') -->
+> &#128712; *See [the example](https://gist.github.com/alekrutkowski/a0d53d05e5cb890ef385bcc6f3fc55ca) of the usage of this package together with Oracle SQL Developer.*
 
 This is a one-function package. Its sole function
-[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://github.com/alekrutkowski/autoschema/blob/main/schema.md)
+[autoschema](https://github.com/alekrutkowski/autoschema)::[schema](https://github.com/alekrutkowski/autoschema/blob/main/schema.md#schema)
 shows the linkages between data.frames and/or csv/tsv files based on
 their column names and column types/classes. See the usage example
 below.
